@@ -41,7 +41,7 @@ function load() {
 
     // Function to convert time for each pass
     function convertToLocal(date,time){
-      var combinedDate = date + " " + time.replace(" +0000","");
+      var combinedDate = new Date(date+" "+time);
       var local = moment.utc(combinedDate).local().format('YYYY-MM-DD HH:mm:ss');
       return local;
     }

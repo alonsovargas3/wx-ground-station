@@ -23,19 +23,9 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Moment.js -->
-    <script src="moment.js"></script>
+
     <!--   Replace SDK_VERSION_NUMBER with the current SDK version number -->
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.540.0.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-    crossorigin=""></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
-    <script src="tle.js"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -55,34 +45,6 @@
     }
     .logo {
       width: 150px;
-    }
-    .pagination a.active {
-      background-color: #4CAF50;
-      color: white;
-    }
-    .pagination {
-      display: -ms-flexbox;
-      flex-wrap: wrap;
-      display: flex;
-      padding-left: 0;
-      list-style: none;
-      border-radius: 0.25rem;
-    }
-    .pagination a:hover:not(.active) {
-      background-color: #ddd;
-    }
-    .page_item {
-      color: #f00100;
-    }
-    #static_map {
-      height: 320px;
-      width: 50%;
-      padding-bottom: 5px;
-    }
-    #flyover_map {
-      height: 320px;
-      width: 50%;
-      padding-bottom: 5px;
     }
     #location {
       margin-top: 0px;
@@ -104,13 +66,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-auto">
-              <a class="nav-link"><strong>Home</strong></a>
+              <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item ml-auto">
               <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalLong">Pass Times</a>
             </li>
             <li class="nav-item ml-auto">
-              <a class="nav-link" href="qfh.html">QFH Antenna</a>
+              <a class="nav-link"><strong>QFH Antenna</strong></a>
             </li>
             <li class="nav-item ml-auto">
               <a class="nav-link" href="rpi.html">RPI Setup</a>
@@ -134,22 +96,34 @@
         </span>
       </div>
 
-      <!-- Passes and Images -->
-      <div id="upcoming_passes" class="mb-2">
-      </div>
-      <div id="maps" class="row col-lg-12 col-md-12 col-xs-12 mb-5">
-          <div id="static_map" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12"></div><br>
-          <div id="flyover_map" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12"></div>
-      </div>
-      <div id="previous_passes">
-        <h4>Recent captures:</h4>
-      </div>
-      <div id="messages"></div>
       <div>
-        <nav aria-label="Page navigation example">
-          <ul id="pages" class="pagination justify-content-center">
-          </ul>
-        </nav>
+        <h1 align="center">Making a Quadrifilar Helix Antenna</h1>
+
+        <p align="center"><img src="website_images/qfh.jpg" width="350" alt="QFH Antenna"></p>
+
+        <p>This odd looking thing is a quadrifilar helix antenna and it's specially designed to receive images from the NOAA weather satellites. It's actually two antennas that are formed by a larger loop and a smaller loop. These loops are shaped to receive a signal on 137MHz frequency and block out the rest of the noise. Below are some resources and my learnings on building a QFH antenna.</p>
+
+        <p>First to explain why such an odd shaped antenna is needed, it helps to understand how the radio signal that comes from the NOAA satellites look. See below:</p>
+
+        <p align="center"><img src="website_images/helix_signal.jpg" alt="Helix Radio Signal"></p>
+
+        <p>There are a lot of tutorials out there and I would say that there is enough variation in each tutorial to make it confusing. Tutorials are mostly geared toward using copper tubing but a few also include a wire. version. Ultimately, I used this <a href="https://www.instructables.com/id/NOAA-Satellite-Signals-with-a-PVC-QFH-Antenna-and-/">Instructables</a> guide with a lot of help from the calculator on the <a href="http://jcoppens.com/ant/qfh/calc.en.php">John Coppens'</a> website.</p>
+
+        <p>Many of the tutorials out there guide you to use the coax as part of the antenna but that ended up confusing me a bit and I decided to just make two loops instead. From a technical point of view, I didn’t see how it would make a big difference and that the most important thing to do was to get two loops that were each about 1λ. This below is the best diagram I found on how to wire it all together.</p>
+
+        <p align="center"><img src="website_images/qfh-wiring.jpg" width="500" alt="QFH Wiring"></p>
+
+        <p>I used 14 AWG wire, which is pretty thick and hard to reliably measure. I went ahead and just created the loops a bit longer than I thought they should be. I probably could have measured out a string for measuring the wire more precisely but I guess I got lazy and just wanted the lengths at that point because I was in the homestretch for putting it all together.</p>
+
+        <p>Once I got the lengths cut, I cabled everything up with some electrical tape to test SWR with my NanoVNA. Of course, the lengths were too long and it was tuning to around 120 mHz. I  started cutting down lengths of about one inch on each of the four ends and testing until  I got closer to an SWR of about 1.7 at  137 mHz. If you don't have a VNA, don't worry. You can skip it as long as you made sure the wire lengths were about the right size. You may just want to take more time when measuring.</p>
+
+        <p>Next big task is to solder everything together. You'll just need a soldering iron, some solder, and flux. These can be bought rather inexpensively but you can also just borrow one from a friend or neighbor. However, the trick to making this easy is to purchase a cable that is already crimped for your SDR. These are typically SMA connectors. I purchased a 25ft cable with SMA connectors on the end and just cut one end off. This left the other end exposed for me to solder onto the anteanna. No need to crimp any connectors.</p>
+
+        <p>As with any antenna, the higher, the better. That said, my antenna is secured to a Christmas tree stand in my lawn and I get great images.</p>
+
+        <p>If you find that building a QFH antenna is a bit more than you want to do at the moment, you can always build a dipole. Below is a diagram on measurements, angle, and direction. You can also buy a simple kit from RTL-SDR that will allow you to just extend to the appropriate length.</p>
+
+        <p align="center"><img src="website_images/dipole.jpg" width="550" alt="Dipole Antenna"></p>
       </div>
     </div>
 

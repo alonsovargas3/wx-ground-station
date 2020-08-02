@@ -23,19 +23,9 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Moment.js -->
-    <script src="moment.js"></script>
+
     <!--   Replace SDK_VERSION_NUMBER with the current SDK version number -->
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.540.0.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-    crossorigin=""></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
-    <script src="tle.js"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -55,34 +45,6 @@
     }
     .logo {
       width: 150px;
-    }
-    .pagination a.active {
-      background-color: #4CAF50;
-      color: white;
-    }
-    .pagination {
-      display: -ms-flexbox;
-      flex-wrap: wrap;
-      display: flex;
-      padding-left: 0;
-      list-style: none;
-      border-radius: 0.25rem;
-    }
-    .pagination a:hover:not(.active) {
-      background-color: #ddd;
-    }
-    .page_item {
-      color: #f00100;
-    }
-    #static_map {
-      height: 320px;
-      width: 50%;
-      padding-bottom: 5px;
-    }
-    #flyover_map {
-      height: 320px;
-      width: 50%;
-      padding-bottom: 5px;
     }
     #location {
       margin-top: 0px;
@@ -104,7 +66,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-auto">
-              <a class="nav-link"><strong>Home</strong></a>
+              <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item ml-auto">
               <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalLong">Pass Times</a>
@@ -113,7 +75,7 @@
               <a class="nav-link" href="qfh.html">QFH Antenna</a>
             </li>
             <li class="nav-item ml-auto">
-              <a class="nav-link" href="rpi.html">RPI Setup</a>
+              <a class="nav-link"><strong>RPI Setup</strong></a>
             </li>
             <li class="nav-item ml-auto">
               <a class="nav-link" target="_blank" href="https://github.com/alonsovargas3/wx-ground-station">Github</a>
@@ -134,22 +96,38 @@
         </span>
       </div>
 
-      <!-- Passes and Images -->
-      <div id="upcoming_passes" class="mb-2">
-      </div>
-      <div id="maps" class="row col-lg-12 col-md-12 col-xs-12 mb-5">
-          <div id="static_map" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12"></div><br>
-          <div id="flyover_map" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12"></div>
-      </div>
-      <div id="previous_passes">
-        <h4>Recent captures:</h4>
-      </div>
-      <div id="messages"></div>
       <div>
-        <nav aria-label="Page navigation example">
-          <ul id="pages" class="pagination justify-content-center">
-          </ul>
-        </nav>
+        <h1 align="center">Raspberry Pi Hardware Setup</h1>
+
+        <p>Transporting the Raspberry PI, RTL-SDR dongle, and filter can be a little difficult. I decided to create a case that would help make the kit easier to plug in and use. In the fall, winter, and even some parts of the spring, I leave this outside permanently but I would not advise leaving this out during the summer as it may lead to heat issues.</p>
+
+        <p>I made a case for my RTL-SDR, LNA, and Raspberry Pi, which make my NOAA ground station. This is attached to a QFH antenna and is setup to automatically capture, decode, and upload NOAA satellite passes. All the decoded images and pass details are uploaded to an AWS website hosted via S3. See here:</p>
+
+        <p align="center"><img src="website_images/rpi1.jpg" width="550" alt="Raspberry Pi Case Open"></p>
+
+        <p>As you can see the RTL-SDR is connected to the Nooelec Filter + LNA using a jumper cable. The antenna connection protrudes just a bit from the case to allow it to connect to an antenna when closed. All of the hardware is on the case using Commander Strips.</p>
+
+        <p>That jumper cable is bending a little more than I'd like but that's about as much distance as I could create between the two devices/connections.</p>
+
+        <p>The RTL-SDR is connected to the RPI with a 12 inch USB cable. I dislike this part about the case and open to any suggestions. The 6in cable was not enough distance and didn't allow the case to be opened. It also required a lot of bending. This way, it may stick out of the case but the bend is better and less restrictive.</p>
+
+        <p align="center"><img src="website_images/rpi2.jpg" width="550" alt="Raspberry Pi Case Closed"></p>
+
+        <p>Once closed you can see the SMA connector for connecting to an antenna and the USB cable that connects the RTL-SDR and RPI. In the background on the top left you can see where the power cable comes in for the RPI. I've been monitoring temperature and it's usually between 42 and 50 degress Celcius but I have seen it go all the way up to around 58 degrees when uploading images.</p>
+
+        <p><strong>Parts List</strong></p>
+
+        <ul>
+          <li><a href="https://www.amazon.com/gp/product/B0129EBDS2/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1">RTL-SDR</a></li>
+          <li><a href="https://www.amazon.com/gp/product/B07TWPR871/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1">Nooelec Filter + LNA</a></li>
+          <li><a href="https://www.amazon.com/Raspberry-Pi-MS-004-00000024-Model-Board/dp/B01LPLPBS8/ref=sr_1_1?dd=MMSF-AS3ku4d4guSFxtbtg%2C%2C&keywords=raspberry+pi+3&qid=1582661015&refinements=p_85%3A2470955011%2Cp_36%3A1253504011%2Cp_90%3A8308921011&rnid=8308919011&rps=1&s=electronics&sr=1-1">Raspberry Pi 3</a></li>
+          <li><a href="https://www.amazon.com/Keyestudio-Enclosure-Clear-Shell-Raspberry/dp/B073RDB1QH/ref=sr_1_20_sspa?keywords=rpi+3+case&qid=1582660401&sr=8-20-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExTFAwQlBOUVRaUVZYJmVuY3J5cHRlZElkPUEwNTU4NjMwMVg3VzMxTVNaRjJRWiZlbmNyeXB0ZWRBZElkPUEwNTg5MzI3TVRINUxaWlI2QkUxJndpZGdldE5hbWU9c3BfYnRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==">Case for Raspberry Pi</a></li>
+          <li><a href="https://www.amazon.com/gp/product/B072FS4WMK/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1">SMA Cables</a></li>
+          <li><a href="https://www.amazon.com/gp/product/B076Z83QTT/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1">USB Cable</a></li>
+          <li><a href="https://www.amazon.com/Bosch-CCSCL-Large-Custom-System/dp/B073HP1JG6/ref=sr_1_14?keywords=bosch+small+case&qid=1582660689&sr=8-14">Bosch Case</a></li>
+          <li><a href="https://www.amazon.com/gp/product/B0751S46TS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1">Commander Strips</a></li>
+        </ul>
+
       </div>
     </div>
 
