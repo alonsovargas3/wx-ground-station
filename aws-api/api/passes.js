@@ -7,7 +7,7 @@ module.exports.list = (event, context, callback) => {
     var params = {
         TableName: process.env.PASS_TABLE,
         Limit: 100,
-        ScanIndexForward: false,
+        ScanIndexForward: true,
         ProjectionExpression: "satellite,passDate,passTime,imageKey,images,chan_a,chan_b,direction,tle1,tle2,passDuration,frequency,elevation,gain"
     };
 
